@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Index{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form action="" method="get">
+        <label for="time">Time</label>
+        <input type="datetime" name="time" id="time">
+
+        <label for="place">Place</label>
+        <input type="text" name="place" id="place">
+
+        <label for="obj">Object</label>
+        <input type="text" name="obj" id="obj">
+
+        <label for="act">Action</label>
+        <input type="text" name="act" id="act">
+    </form>
+{% endblock%}
