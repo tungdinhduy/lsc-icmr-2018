@@ -1,11 +1,56 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block header %}
+<h1>{% block title %}Index{% endblock %}</h1>
+{% endblock %} {% block content %}
+<div>
+    <div>
+        <input type="checkbox" name="" id="date_checkbox"> Date:
+    </div>
+    <div>
+        From
+        <input type="datetime" name="" id="start_date"> To
+        <input type="datetime" name="" id="end_date">
+    </div>
+</div>
+<div>
+    <div>
+        <input type="checkbox" name="" id="period_checkbox"> Time:
+    </div>
+    <div>
+        <input type="checkbox" name="" id="morning_checkbox"> Morning
+        <input type="checkbox" name="" id="noon_checkbox"> Noon
+        <input type="checkbox" name="" id="afternoon_checkbox"> Afternoon
+        <input type="checkbox" name="" id="evening_checkbox"> Evening
+    </div>
+</div>
+<div>
+    <div>
+        <input type="checkbox" name="" id="location_checkbox"> Location(s):
+    </div>
+    <div id="locations">
+    </div>
+    <button onclick="appendLocation()" value="Add Action">Add Location</button>
+</div>
+<div>
+    <div>
+        <input type="checkbox" name="" id="objects_checkbox"> Object(s):
+    </div>
+    <div id="objs">
+    </div>
+    <button onclick="appendObj()" value="Add Obj">Add Object</button>
+</div>
+<div>
+    <div>
+        <input type="checkbox" name="" id="action_checkbox"> Action(s):
+    </div>
+    <div id="actions">
+    </div>
+    <button onclick="appendAction()" value="Add Action">Add Action</button>
+</div>
 
-{% block header %}
-    <h1>{% block title %}Index{% endblock %}</h1>
-{% endblock %}
+<div id="" style="overflow:scroll; height:400px;">
+</div>
 
-{% block content %}
-    <form action="" method="get">
+<!-- <form action="" method="get">
         <label for="time">Time</label>
         <input type="datetime" name="time" id="time">
 
@@ -17,5 +62,56 @@
 
         <label for="act">Action</label>
         <input type="text" name="act" id="act">
-    </form>
-{% endblock%}
+
+        <input type="submit" value="Submit">
+    </form> -->
+<script>
+    function appendLocation() {
+        var wrap_box = document.createElement("div")
+        var textbox = document.createElement("input");
+        var wrap_text = document.createElement("div")
+        wrap_text.id = "hyperlink"
+
+        textbox.type = "text";
+        textbox.placeholder = "new location ...";
+
+        wrap_box.appendChild(textbox)
+        wrap_box.appendChild(wrap_text)
+
+        parent = document.getElementById("locations");
+        parent.appendChild(wrap_box)
+    }
+
+    function appendObj() {
+        var wrap_box = document.createElement("div")
+        var textbox = document.createElement("input");
+        var wrap_text = document.createElement("div")
+        wrap_text.id = "hyperlink"
+
+        textbox.type = "text";
+        textbox.placeholder = "new object ...";
+
+        wrap_box.appendChild(textbox)
+        wrap_box.appendChild(wrap_text)
+
+        parent = document.getElementById("objs");
+        parent.appendChild(wrap_box)
+    }
+
+    function appendAction() {
+        var wrap_box = document.createElement("div")
+        var textbox = document.createElement("input");
+        var wrap_text = document.createElement("div")
+        wrap_text.id = "hyperlink"
+
+        textbox.type = "text";
+        textbox.placeholder = "new action ...";
+
+        wrap_box.appendChild(textbox)
+        wrap_box.appendChild(wrap_text)
+
+        parent = document.getElementById("actions");
+        parent.appendChild(wrap_box)
+    }
+
+</script> {% endblock%}
