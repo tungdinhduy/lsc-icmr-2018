@@ -1,117 +1,130 @@
 {% extends 'base.html' %} {% block header %}
 <h1>{% block title %}Index{% endblock %}</h1>
 {% endblock %} {% block content %}
-<div>
-    <div>
-        <input type="checkbox" name="" id="date_checkbox"> Date:
-    </div>
-    <div>
-        From
-        <input type="datetime" name="" id="start_date"> To
-        <input type="datetime" name="" id="end_date">
-    </div>
-</div>
-<div>
-    <div>
-        <input type="checkbox" name="" id="period_checkbox"> Time:
-    </div>
-    <div>
-        <input type="checkbox" name="" id="morning_checkbox"> Morning
-        <input type="checkbox" name="" id="noon_checkbox"> Noon
-        <input type="checkbox" name="" id="afternoon_checkbox"> Afternoon
-        <input type="checkbox" name="" id="evening_checkbox"> Evening
-    </div>
-</div>
-<div>
-    <div>
-        <input type="checkbox" name="" id="location_checkbox"> Location(s):
-    </div>
-    <div id="locations">
-    </div>
-    <button onclick="appendLocation()" value="Add Action">Add Location</button>
-</div>
-<div>
-    <div>
-        <input type="checkbox" name="" id="objects_checkbox"> Object(s):
-    </div>
-    <div id="objs">
-    </div>
-    <button onclick="appendObj()" value="Add Obj">Add Object</button>
-</div>
-<div>
-    <div>
-        <input type="checkbox" name="" id="action_checkbox"> Action(s):
-    </div>
-    <div id="actions">
-    </div>
-    <button onclick="appendAction()" value="Add Action">Add Action</button>
-</div>
 
-<div id="" style="overflow:scroll; height:400px;">
-</div>
+<form action="/" method="get">
+    <div>
+        <div>
+            <input type="checkbox" name="" id="date_checkbox"> Date:
+        </div>
+        <div>
+            From
+            <input type="datetime" name="" id="start_date"> To
+            <input type="datetime" name="" id="end_date">
+        </div>
+    </div>
+    <div>
+        <div>
+            <input type="checkbox" name="" id="period_checkbox"> Time:
+        </div>
+        <div>
+            <input type="checkbox" name="" id="morning_checkbox"> Morning
+            <input type="checkbox" name="" id="noon_checkbox"> Noon
+            <input type="checkbox" name="" id="afternoon_checkbox"> Afternoon
+            <input type="checkbox" name="" id="evening_checkbox"> Evening
+        </div>
+    </div>
+    <div>
+        <div>
+            <input type="checkbox" name="" id="location_checkbox"> Location(s):
+        </div>
+        <div id="locations">
+        </div>
+        <input type="button" value="Add Location" onclick="appendLocation()">
+    </div>
+    <div>
+        <div>
+            <input type="checkbox" name="" id="objects_checkbox"> Object(s):
+        </div>
+        <div id="objs">
+        </div>
+        <input type="button" value="Add Object" onclick="appendObj()">
+    </div>
+    <div>
+        <div>
+            <input type="checkbox" name="" id="action_checkbox"> Action(s):
+        </div>
+        <div id="actions">
+        </div>
+        <input type="button" value="Add Action" onclick="appendAction()">
+    </div>
+    <div>
+        <button type="submit">Retrieve</button>
+        <input type="button" onclick="window.location.reload()" value="Clear">
+    </div>
+</form>
 
-<!-- <form action="" method="get">
-        <label for="time">Time</label>
-        <input type="datetime" name="time" id="time">
+<div id="wrapper" style="overflow:scroll; height:400px;"></div>
 
-        <label for="place">Place</label>
-        <input type="text" name="place" id="place">
-
-        <label for="obj">Object</label>
-        <input type="text" name="obj" id="obj">
-
-        <label for="act">Action</label>
-        <input type="text" name="act" id="act">
-
-        <input type="submit" value="Submit">
-    </form> -->
 <script>
+
+    // var locIds = [0];
+    // var objIds = [0];
+    // var actionIds = [0];
+
+
+    // function getID(ids) {
+    //     var emptyIndex = ids.indexOf(-1);
+    //     if (emptyIndex != -1) {
+    //         ids[emptyIndex] = emptyIndex
+
+    //         return emptyIndex
+    //     } else {
+    //         emptyIndex = ids.length
+    //         ids.push(emptyIndex)
+    //         return emptyIndex
+    //     }
+    // }
+
+    var num_locs = 0;
+
     function appendLocation() {
-        var wrap_box = document.createElement("div")
+        num_locs += 1;
+        var wrap_box = document.createElement("div");
         var textbox = document.createElement("input");
-        var wrap_text = document.createElement("div")
-        wrap_text.id = "hyperlink"
+        var wrap_text = document.createElement("div");
+        wrap_text.id = "hyperlink";
 
         textbox.type = "text";
         textbox.placeholder = "new location ...";
 
-        wrap_box.appendChild(textbox)
-        wrap_box.appendChild(wrap_text)
+        wrap_box.appendChild(textbox);
+        wrap_box.appendChild(wrap_text);
 
         parent = document.getElementById("locations");
-        parent.appendChild(wrap_box)
+        parent.appendChild(wrap_box);
     }
 
     function appendObj() {
-        var wrap_box = document.createElement("div")
+        var wrap_box = document.createElement("div");
         var textbox = document.createElement("input");
         var wrap_text = document.createElement("div")
-        wrap_text.id = "hyperlink"
+        wrap_text.id = "hyperlink";
 
         textbox.type = "text";
         textbox.placeholder = "new object ...";
 
-        wrap_box.appendChild(textbox)
-        wrap_box.appendChild(wrap_text)
+        wrap_box.appendChild(textbox);
+        wrap_box.appendChild(wrap_text);
 
         parent = document.getElementById("objs");
-        parent.appendChild(wrap_box)
+        parent.appendChild(wrap_box);
     }
 
     function appendAction() {
-        var wrap_box = document.createElement("div")
+        var wrap_box = document.createElement("div");
         var textbox = document.createElement("input");
-        var wrap_text = document.createElement("div")
-        wrap_text.id = "hyperlink"
+        var wrap_text = document.createElement("div");
+        wrap_text.id = "hyperlink";
 
         textbox.type = "text";
         textbox.placeholder = "new action ...";
 
-        wrap_box.appendChild(textbox)
-        wrap_box.appendChild(wrap_text)
+        wrap_box.appendChild(textbox);
+        wrap_box.appendChild(wrap_text);
 
         parent = document.getElementById("actions");
-        parent.appendChild(wrap_box)
+        parent.appendChild(wrap_box);
     }
 
 </script> {% endblock%}

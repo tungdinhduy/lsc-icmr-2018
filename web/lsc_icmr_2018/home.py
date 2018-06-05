@@ -8,6 +8,9 @@ bp = Blueprint('home', __name__)
 
 @bp.route('/')
 def index():
+    if request.method == 'GET':
+        pass
+
     return render_template('home/index.html')
     
 @bp.route('/result', methods=('GET', 'POST'))
